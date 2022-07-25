@@ -6,7 +6,7 @@ Gravity_memory::Gravity_memory(Field &field, Game_mode game_mode):
 {
 }
 
-void Gravity_memory::gravity_mode()
+void Gravity_memory::gravity_mode()  //Czemu nie dziala dla niepodzielnych przez 4
 {
     int times = get_width();
 
@@ -18,7 +18,7 @@ void Gravity_memory::gravity_mode()
             {
                 if(is_field_revealed(i, j))
                 {
-                    if(!is_field_revealed(i+1, j) && (i + 1 <= get_width()-1))
+                    if((i + 1 <= get_width()-1) && (!is_field_revealed(i+1, j)))
                     {
                         char value_holder = get_field_value(i, j);
                         set_field_value(i, j, get_field_value(i+1, j ));
