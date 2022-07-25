@@ -38,11 +38,6 @@ void Memory_Commands::show_field_as_hidden() const
     std::cout << field.get_hidden_value();
 }
 
-void Memory_Commands::change_reveal_of_field(int width, int height)
-{
-    board[width][height].change_reveal_of_field();
-}
-
 void Memory_Commands::generate_board()
 {
     //Generate board
@@ -106,6 +101,17 @@ int Memory_Commands::match_fields(int x_1, int y_1, int x_2, int y_2)
         std::cout << "One or both of the fields you selected is already revealed" << std::endl;
         return 0;
     }
+}
+
+void Memory_Commands::set_field_value(int width, int height, char val)
+{
+    board[width][height].set_value(val);
+
+}
+
+void Memory_Commands::change_reveal_of_field(int width, int height)
+{
+    board[width][height].change_reveal_of_field();
 }
 
 

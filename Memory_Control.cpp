@@ -40,6 +40,7 @@ void Memory_Control::play_memory()
 
         memory_viewer.show_board();
         get_coords();
+        memory_commands.gravity_mode();
 
     }
 

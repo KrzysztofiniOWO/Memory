@@ -42,8 +42,14 @@ public:
     //Player select two fields and game checks if their value is the same
     int match_fields(int x_1, int y_1, int x_2, int y_2);
 
-    //Reveals our field if hidden and hides it if revealed
+    //Set field value to inserted char
+    void set_field_value(int width, int height, char val);
+
+    //Change state of our cell (Is revealed or not)
     void change_reveal_of_field(int width, int height);
+
+    //In gravity mode correctly guessed cells fall down
+    virtual void gravity_mode(){};
 
 
 

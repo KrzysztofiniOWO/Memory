@@ -3,7 +3,8 @@
 #include "Field.h"
 #include "Memory_Viewer.h"
 #include "Memory_Control.h"
-#include <time.h>
+#include "Gravity_memory.h"
+#include <ctime>
 #include <string>
 #include <memory>
 
@@ -28,35 +29,42 @@ Game_mode select_mode()
 
 }
 
-/*
-std::unique_ptr<Game_mode> select_game_mode(std::string mode)
-{
-    if (mode == "easy")
-    {
-        return std::make_unique<Game_mode> = easy;
+std::string gravity_state(){
 
-    }else if (mode == "normal")
+    std::string gravity;
+    std::cout << "Do you want to play with gravity cells (guessed cells fall down on board)? [yes / no]: " << std::endl;
+    std::cin >> gravity;
+
+    return gravity;
+}
+
+
+std::unique_ptr<Memory_Commands> select_game_mode(std::string gravity, Field& field, Game_mode game_mode )
+{
+    if (gravity == "yes")
     {
+        return std::make_unique<Gravity_memory>(field, game_mode);
 
     }else
     {
-
+        return std::make_unique<Memory_Commands>(field, game_mode);
     }
-    return make_unique<Song>(artist, title);
 }
-*/
+
 
 int main() {
 
-    srand( time( 0 ) );
+    srand( time(nullptr ) );
 
     Field field;
 
-    Memory_Commands memory_commands(field, select_mode());
+    std::unique_ptr<Memory_Commands> memory_commands = select_game_mode(gravity_state(), field, select_mode()); //<--- Czemu ta kurwa jebana nie działa do chuja pana
 
-    Memory_Viewer memory_viewer(memory_commands);
+    //Gravity_memory memory_commands(field, select_mode());
 
-    Memory_Control memory_control(memory_commands, memory_viewer);
+    Memory_Viewer memory_viewer(*memory_commands);
+
+    Memory_Control memory_control(*memory_commands, memory_viewer);
 
     memory_control.play_memory();
 
