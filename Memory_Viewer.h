@@ -16,6 +16,9 @@ public:
     //Show player current state of board
     void show_board() const;
 
+    //Show current amount of points
+    void show_points() const;
+
 };
 
 

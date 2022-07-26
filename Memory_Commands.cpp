@@ -85,6 +85,9 @@ int Memory_Commands::match_fields(int x_1, int y_1, int x_2, int y_2)
         if (get_field_value(x_1, y_1) == get_field_value(x_2, y_2))
         {
             std::cout << "Fields were the same and got removed from board. You got one point" << std::endl;
+
+            add_points(return_modifier());
+            increase_modifier();
             return -2;
 
         } else
@@ -94,6 +97,8 @@ int Memory_Commands::match_fields(int x_1, int y_1, int x_2, int y_2)
                     "] and field 2 is [" << board[x_2][y_2].get_value() << "]." << std::endl;
             board[x_1][y_1].change_reveal_of_field();
             board[x_2][y_2].change_reveal_of_field();
+
+            reset_modifier();
             return 0;
         }
     }else
@@ -112,6 +117,31 @@ void Memory_Commands::set_field_value(int width, int height, char val)
 void Memory_Commands::change_reveal_of_field(int width, int height)
 {
     board[width][height].change_reveal_of_field();
+}
+
+void Memory_Commands::add_points(int amount)
+{
+    points += amount;
+}
+
+int Memory_Commands::return_points()
+{
+    return points;
+}
+
+void Memory_Commands::increase_modifier()
+{
+    modifier *= 2;
+}
+
+int Memory_Commands::return_modifier()
+{
+    return modifier;
+}
+
+void Memory_Commands::reset_modifier()
+{
+    modifier = 1;
 }
 
 

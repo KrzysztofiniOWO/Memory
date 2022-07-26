@@ -28,7 +28,6 @@ void Memory_Control::get_coords()
     fields += memory_commands.match_fields(cord_1[0], cord_1[1], cord_2[0], cord_2[1]);
 }
 
-
 void Memory_Control::play_memory()
 {
     memory_commands.set_width_height();
@@ -41,6 +40,7 @@ void Memory_Control::play_memory()
         memory_viewer.show_board();
         get_coords();
         memory_commands.gravity_mode();
+        memory_viewer.show_points();
 
     }
 

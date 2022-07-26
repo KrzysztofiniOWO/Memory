@@ -28,3 +28,10 @@ void Memory_Viewer::show_board() const
 
     std::cout << std::endl;
 }
+
+void Memory_Viewer::show_points() const
+{
+    std::cout << "******************************" << std::endl;
+    std::cout << "You currently have " << memory_commands.return_points() << " points." << std::endl;
+    std::cout << "******************************" << std::endl;
+}

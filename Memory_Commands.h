@@ -12,6 +12,8 @@ private:
     Field& field;
     std::vector<std::vector<Field>> board;
     int height, width;
+    int points = 0;
+    int modifier = 1;
     Game_mode game_mode;
 
 public:
@@ -50,6 +52,21 @@ public:
 
     //In gravity mode correctly guessed cells fall down
     virtual void gravity_mode(){};
+
+    //Add points after guessing cards correctly
+    void add_points(int amount);
+
+    //Return amount of points in current game
+    int return_points();
+
+    //If player guess correctly multiply current modifier by 2
+    void increase_modifier();
+
+    //Return value of our modifier
+    int return_modifier();
+
+    //Reset modifier to 1 after wrong guess
+    void reset_modifier();
 
 
 

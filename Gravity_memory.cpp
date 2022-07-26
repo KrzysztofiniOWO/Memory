@@ -6,7 +6,7 @@ Gravity_memory::Gravity_memory(Field &field, Game_mode game_mode):
 {
 }
 
-void Gravity_memory::gravity_mode()  //Czemu nie dziala dla niepodzielnych przez 4
+void Gravity_memory::gravity_mode()
 {
     int times = get_width();
 
