@@ -4,6 +4,7 @@
 #include "Memory_Viewer.h"
 #include "Memory_Control.h"
 #include "Gravity_memory.h"
+#include "High_score.h"
 #include <ctime>
 #include <string>
 #include <memory>
@@ -58,13 +59,15 @@ int main() {
 
     Field field;
 
+    High_score high_score;
+
     std::unique_ptr<Memory_Commands> memory_commands = select_game_mode(gravity_state(), field, select_mode()); //<--- Czemu ta kurwa jebana nie działa do chuja pana
 
     //Gravity_memory memory_commands(field, select_mode());
 
     Memory_Viewer memory_viewer(*memory_commands);
 
-    Memory_Control memory_control(*memory_commands, memory_viewer);
+    Memory_Control memory_control(*memory_commands, memory_viewer, high_score);
 
     memory_control.play_memory();
 

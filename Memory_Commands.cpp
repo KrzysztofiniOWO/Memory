@@ -77,35 +77,45 @@ void Memory_Commands::generate_board()
 
 int Memory_Commands::match_fields(int x_1, int y_1, int x_2, int y_2)
 {
-    if (!board[x_1][y_1].get_revealed() || !board[x_2][y_2].get_revealed())
+    if ((x_1 == x_2) && (y_1 == y_2))
     {
-        board[x_1][y_1].change_reveal_of_field();
-        board[x_2][y_2].change_reveal_of_field();
+        std::cout << "You selected same field two times" << std::endl;
+        return 0;
 
-        if (get_field_value(x_1, y_1) == get_field_value(x_2, y_2))
+    }else
+    {
+        if (!board[x_1][y_1].get_revealed() || !board[x_2][y_2].get_revealed())
         {
-            std::cout << "Fields were the same and got removed from board. You got one point" << std::endl;
-
-            add_points(return_modifier());
-            increase_modifier();
-            return -2;
-
-        } else
-        {
-            std::cout << "Fields were not the same. Try again!!!" << std::endl;
-            std::cout << "Field 1 is [" << board[x_1][y_1].get_value() <<
-                    "] and field 2 is [" << board[x_2][y_2].get_value() << "]." << std::endl;
             board[x_1][y_1].change_reveal_of_field();
             board[x_2][y_2].change_reveal_of_field();
 
-            reset_modifier();
+            if (get_field_value(x_1, y_1) == get_field_value(x_2, y_2))
+            {
+                std::cout << "Fields were the same and got removed from board. You got one point" << std::endl;
+
+                add_points(return_modifier());
+                increase_modifier();
+                return -2;
+
+            } else
+            {
+                std::cout << "Fields were not the same. Try again!!!" << std::endl;
+                std::cout << "Field 1 is [" << board[x_1][y_1].get_value() <<
+                          "] and field 2 is [" << board[x_2][y_2].get_value() << "]." << std::endl;
+                board[x_1][y_1].change_reveal_of_field();
+                board[x_2][y_2].change_reveal_of_field();
+
+                reset_modifier();
+                return 0;
+            }
+        }else
+        {
+            std::cout << "One or both of the fields you selected is already revealed" << std::endl;
             return 0;
         }
-    }else
-    {
-        std::cout << "One or both of the fields you selected is already revealed" << std::endl;
-        return 0;
+
     }
+
 }
 
 void Memory_Commands::set_field_value(int width, int height, char val)

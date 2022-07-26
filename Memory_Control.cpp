@@ -1,9 +1,10 @@
 #include "Memory_Control.h"
 #include <iostream>
 
-Memory_Control::Memory_Control(Memory_Commands &memory_commands, Memory_Viewer &memory_viewer):
+Memory_Control::Memory_Control(Memory_Commands &memory_commands, Memory_Viewer &memory_viewer, High_score &high_score):
 memory_commands(memory_commands),
-memory_viewer(memory_viewer)
+memory_viewer(memory_viewer),
+high_score(high_score)
 {}
 
 void Memory_Control::count_fields()
@@ -44,5 +45,13 @@ void Memory_Control::play_memory()
 
     }
 
-    std::cout << "Good job. You guessed all fields correctly. You won!!!";
+    std::cout << "Congratulations you won. Your score is " << memory_commands.return_points() << std::endl;
+    std::cout << "Now let's check our scoreboard" << std::endl;
+
+    high_score.load_scores();
+    high_score.set_score(10, memory_commands.return_points());
+    high_score.sort_scores();
+    high_score.print_scores();
+    high_score.save_scores();
+
 }
