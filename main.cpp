@@ -5,6 +5,8 @@
 #include "Memory_Control.h"
 #include "Gravity_memory.h"
 #include "High_score.h"
+#include "Triple_memory.h"
+#include "Triple_memory_gravity.h"
 #include <ctime>
 #include <string>
 #include <memory>
@@ -39,16 +41,40 @@ std::string gravity_state(){
     return gravity;
 }
 
+std::string type_state(){
 
-std::unique_ptr<Memory_Commands> select_game_mode(std::string gravity, Field& field, Game_mode game_mode )
+    std::string type;
+    std::cout << "Do you want to match 2 or 3 fields each turn? [two/three]: " << std::endl;
+    std::cin >> type;
+
+    return type;
+
+}
+
+
+std::unique_ptr<Memory_Commands> select_game_mode(std::string gravity, std::string type, Field& field, Game_mode game_mode )
 {
     if (gravity == "yes")
     {
-        return std::make_unique<Gravity_memory>(field, game_mode);
+        if (type == "two")
+        {
+            return std::make_unique<Gravity_memory>(field, game_mode);
+
+        }else
+        {
+            return std::make_unique<Triple_memory_gravity>(field, game_mode);//
+        }
 
     }else
     {
-        return std::make_unique<Memory_Commands>(field, game_mode);
+        if (type == "three")
+        {
+            return std::make_unique<Triple_memory>(field, game_mode);
+
+        }else
+        {
+            return std::make_unique<Memory_Commands>(field, game_mode);
+        }
     }
 }
 
@@ -61,9 +87,7 @@ int main() {
 
     High_score high_score;
 
-    std::unique_ptr<Memory_Commands> memory_commands = select_game_mode(gravity_state(), field, select_mode()); //<--- Czemu ta kurwa jebana nie działa do chuja pana
-
-    //Gravity_memory memory_commands(field, select_mode());
+    std::unique_ptr<Memory_Commands> memory_commands = select_game_mode(gravity_state(), type_state(), field, select_mode()); //<--- Czemu ta kurwa jebana nie działa do chuja pana
 
     Memory_Viewer memory_viewer(*memory_commands);
 

@@ -11,7 +11,7 @@ public:
     Gravity_memory(Field& field, Game_mode game_mode);
 
     //In gravity mode correctly guessed cells fall down
-    void gravity_mode()override;
+    void gravity_mode() override;
 
 
 

@@ -3,8 +3,7 @@
 
 Gravity_memory::Gravity_memory(Field &field, Game_mode game_mode):
         Memory_Commands(field, game_mode)
-{
-}
+{}
 
 void Gravity_memory::gravity_mode()
 {

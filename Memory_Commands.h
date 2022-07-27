@@ -10,9 +10,11 @@ class Memory_Commands {
 private:
 
     Field& field;
+    int points = 0;
+
+protected:
     std::vector<std::vector<Field>> board;
     int height, width;
-    int points = 0;
     int modifier = 1;
     Game_mode game_mode;
 
@@ -21,7 +23,7 @@ public:
     Memory_Commands(Field& field, Game_mode game_mode);
 
     //Set width and height of our board based on game_mode (easy = 4X4, normal = 6X6, hard = 8X8)
-    void set_width_height();
+    virtual void set_width_height();
 
     //Get width of our board
     int get_width() const;
@@ -42,7 +44,7 @@ public:
     void show_field_as_hidden() const;
 
     //Get coordinates of fields from player to check if values of fields are the same
-    int get_coords();
+    virtual int get_coords();
 
     //Player select two fields and game checks if their value is the same
     int match_fields(int x_1, int y_1, int x_2, int y_2);
@@ -63,7 +65,7 @@ public:
     int return_points();
 
     //If player guess correctly multiply current modifier by 2
-    void increase_modifier();
+    virtual void increase_modifier();
 
     //Return value of our modifier
     int return_modifier();

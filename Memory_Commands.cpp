@@ -107,7 +107,7 @@ int Memory_Commands::match_fields(int x_1, int y_1, int x_2, int y_2)
 
             if (get_field_value(x_1, y_1) == get_field_value(x_2, y_2))
             {
-                std::cout << "Fields were the same and got removed from board. You got one point" << std::endl;
+                std::cout << "Fields were the same and got removed from board." << std::endl;
 
                 add_points(return_modifier());
                 increase_modifier();
