@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-enum class Game_mode { easy = 4, normal = 6, hard = 8}
+enum class Game_mode { easy = 4, normal = 6, hard = 8};
 
 class Memory_Commands {
 
