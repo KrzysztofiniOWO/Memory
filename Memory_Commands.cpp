@@ -75,6 +75,22 @@ void Memory_Commands::generate_board()
     }
 }
 
+int Memory_Commands::get_coords()
+{
+    int cord_1[2], cord_2[2];
+    std::cout << "Enter coordinate x of first field: " << std::endl;
+    std::cin >> cord_1[0];
+    std::cout << "Enter coordinate y of first field: " << std::endl;
+    std::cin >> cord_1[1];
+    std::cout << "Enter coordinate x of second field: " << std::endl;
+    std::cin >> cord_2[0];
+    std::cout << "Enter coordinate y of second field: " << std::endl;
+    std::cin >> cord_2[1];
+
+    return match_fields(cord_1[0], cord_1[1], cord_2[0], cord_2[1]);
+
+}
+
 int Memory_Commands::match_fields(int x_1, int y_1, int x_2, int y_2)
 {
     if ((x_1 == x_2) && (y_1 == y_2))
@@ -95,6 +111,7 @@ int Memory_Commands::match_fields(int x_1, int y_1, int x_2, int y_2)
 
                 add_points(return_modifier());
                 increase_modifier();
+                std::cout << std::endl;
                 return -2;
 
             } else
@@ -106,6 +123,7 @@ int Memory_Commands::match_fields(int x_1, int y_1, int x_2, int y_2)
                 board[x_2][y_2].change_reveal_of_field();
 
                 reset_modifier();
+                std::cout << std::endl;
                 return 0;
             }
         }else

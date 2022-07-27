@@ -12,21 +12,9 @@ void Memory_Control::count_fields()
     fields = memory_commands.get_width() * memory_commands.get_height();
 }
 
-void Memory_Control::get_coords()
+void Memory_Control::change_fields(int number)
 {
-    int cord_1[2], cord_2[2];
-    std::cout << "Enter coordinate x of first field: " << std::endl;
-    std::cin >> cord_1[0];
-    std::cout << "Enter coordinate y of first field: " << std::endl;
-    std::cin >> cord_1[1];
-    std::cout << "Enter coordinate x of second field: " << std::endl;
-    std::cin >> cord_2[0];
-    std::cout << "Enter coordinate y of second field: " << std::endl;
-    std::cin >> cord_2[1];
-
-    memory_viewer.show_board();
-
-    fields += memory_commands.match_fields(cord_1[0], cord_1[1], cord_2[0], cord_2[1]);
+    fields += number;
 }
 
 void Memory_Control::play_memory()
@@ -39,13 +27,13 @@ void Memory_Control::play_memory()
     {
 
         memory_viewer.show_board();
-        get_coords();
+        change_fields(memory_commands.get_coords());
         memory_commands.gravity_mode();
         memory_viewer.show_points();
 
     }
 
-    std::cout << "Congratulations you won. Your score is " << memory_commands.return_points() << std::endl;
+    std::cout << "Congratulations you won. Your score is " << memory_commands.return_points() << std::endl << std::endl;
     std::cout << "Now let's check our scoreboard" << std::endl;
 
     high_score.load_scores();

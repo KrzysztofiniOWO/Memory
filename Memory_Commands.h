@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-enum class Game_mode { easy = 4, normal = 6, hard = 8 };
+enum class Game_mode { easy = 4, normal = 6, hard = 8}
 
 class Memory_Commands {
 
@@ -40,6 +40,9 @@ public:
 
     //Show our field with a hidden value
     void show_field_as_hidden() const;
+
+    //Get coordinates of fields from player to check if values of fields are the same
+    int get_coords();
 
     //Player select two fields and game checks if their value is the same
     int match_fields(int x_1, int y_1, int x_2, int y_2);

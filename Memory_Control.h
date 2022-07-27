@@ -23,8 +23,9 @@ public:
     //Loop for our game
     void play_memory();
 
-    //Get coordinates of fields from player to check if they are the same
-    void get_coords();
+    //Update number of unrevealed fields if player guesses correctly
+    void change_fields(int number);
+
 
 
 
