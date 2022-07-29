@@ -87,8 +87,7 @@ int main() {
 
     High_score high_score;
 
-    std::unique_ptr<Memory_Commands> memory_commands = select_game_mode(gravity_state(), type_state(), field, select_mode()); //<--- Czemu ta kurwa jebana nie działa do chuja pana
-
+    std::unique_ptr<Memory_Commands> memory_commands = select_game_mode(gravity_state(), type_state(), field, select_mode());
     Memory_Viewer memory_viewer(*memory_commands);
 
     Memory_Control memory_control(*memory_commands, memory_viewer, high_score);
